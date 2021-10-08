@@ -9,7 +9,7 @@ mysql = MySQL()
  
 # configuring MySQL for the web application
 app.config['MYSQL_DATABASE_USER'] = 'root'    # default user of MySQL to be replaced with appropriate username
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Thds@19xcNh#20J' # default passwrod of MySQL to be replaced with appropriate password
+app.config['MYSQL_DATABASE_PASSWORD'] = '' # default passwrod of MySQL to be replaced with appropriate password
 app.config['MYSQL_DATABASE_DB'] = 'database2'  # Database name to be replaced with appropriate database name
 app.config['MYSQL_DATABASE_HOST'] = 'localhost' # default database host of MySQL to be replaced with appropriate database host
 #initialise mySQL
