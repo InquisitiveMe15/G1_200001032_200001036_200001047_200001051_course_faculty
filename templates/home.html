@@ -28,6 +28,14 @@
       background-color: rgb(206, 206, 206);
     }
 
+    .query {
+      margin: 10px;
+      color: chartreuse;
+      font-size: 25px;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 250;
+    }
+
     /* .filters{
       border: solid black 3px;
       border-radius: 3px;
@@ -36,6 +44,8 @@
 </head>
 
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">IIT Indore</a>
@@ -46,22 +56,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/templates/home.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#filter">Filter</a>
+            <a class="nav-link" href="#query">Queries</a>
           </li>
-          <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown -->
-          </a>
-          <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul> -->
-          <!-- </li> -->
+
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -70,6 +70,8 @@
       </div>
     </div>
   </nav>
+
+
   <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 30px;">
     <div class="col">
       <div class="card h-100">
@@ -78,8 +80,6 @@
           class="card-img-top" alt="...">
         <div class="card-body">
           <a href="#" class="card-title">COURSES</a>
-          <!-- <h3 class="card-title">COURSES</h3> -->
-          <!-- <p class="card-text"></p> -->
         </div>
       </div>
     </div>
@@ -89,7 +89,6 @@
           class="card-img-top" alt="...">
         <div class="card-body">
           <a href="#" class="card-title">FACULTY</a>
-          <!-- <p class="card-text"></p> -->
         </div>
       </div>
     </div>
@@ -100,23 +99,24 @@
           height="285" class="card-img-top" alt="...">
         <div class="card-body">
           <a href="#" class="card-title">ALL INFORMATAION ABOUT COURSES AND FACULTY.</a>
-          <!-- <p class="card-text"><strong></strong></p> -->
         </div>
       </div>
     </div>
   </div>
 
-
-  <div class="filters" id="filter"
+  <!-- ************************************************************************************************************* -->
+  <!-- <div class="filters" id="filter"
     style="padding: 12%; font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 300; font-size: 30px; color: chartreuse; text-align: center;">
-    <form class="form" style="border: 5px solid chartreuse; border-radius: 10px; padding: 5%;">
+    <form method="POST" action="" id="form" class="form"
+      style="border: 5px solid chartreuse; border-radius: 10px; padding: 5%;">
       <h1 style="text-align: center;">FILTERS</h1>
 
       <div class="mb-3" style="margin: 20px;">
         <label for="course" class="form-label">Choose Course : </label>
         <SELECT name="course" id="course" style="font-family:verdana">
+          <option value="NULL">NULL</option>
           {% for j in courselist %}
-          <OPTION value={{j[0]}}>{{j[1]}}</OPTION>
+          <OPTION value="{{j[0]}}">{{j[0]}}</OPTION>
           {% endfor %}
         </SELECT>
       </div>
@@ -125,6 +125,7 @@
       <div class="duration" style="margin: 20px;">
         <label for="startingyear">Choose Starting Year :</label>
         <select name="startingyear" id="startingyear" style="font-family:verdana">
+          <option value="NULL">NULL</option>
           <option value="2009">2009</option>
           <option value="2010">2010</option>
           <option value="2011">2011</option>
@@ -142,6 +143,7 @@
 
         <label for="endingyear">Choose Ending Year :</label>
         <select name="endingyear" id="endingyear" style="font-family:verdana">
+          <option value="NULL">NULL</option>
           <option value="2009">2009</option>
           <option value="2010">2010</option>
           <option value="2011">2011</option>
@@ -161,8 +163,9 @@
       <div class="mb-3" style="margin: 20px;">
         <label for="department" class="form-label">Choose Department : </label>
         <SELECT name="department" id="department" style="font-family:verdana">
+          <option value="NULL">NULL</option>
           {% for j in departmentlist %}
-          <OPTION value={{j[0]}}>{{j[1]}}</OPTION>
+          <OPTION value="{{j[0]}}">{{j[0]}}</OPTION>
           {% endfor %}
         </SELECT>
       </div>
@@ -170,8 +173,9 @@
       <div class="mb-3" style="margin: 20px;">
         <label for="faculty" class="form-label">Choose proffessor : </label>
         <SELECT name="faculty" id="faculty" style="font-family:verdana">
+          <option value="NULL">NULL</option>
           {% for j in facultylist %}
-          <OPTION value={{j[0]}}>{{j[1]}}</OPTION>
+          <OPTION value="{{j[0]}}">{{j[0]}}</OPTION>
           {% endfor %}
         </SELECT>
       </div>
@@ -181,6 +185,36 @@
       </div>
 
     </form>
+  </div> -->
+  <!-- ****************************************************************************************************** -->
+  <div id="query" style="padding: 4%; margin-top: 25px;">
+    <div style="text-align: center; color: chartreuse;">
+      <h2>Queries</h2>
+    </div>
+    <div class="queries" style="padding: 5%; text-align: center;">
+      <button class="query btn btn-danger">
+        <a href="{{ url_for('query1') }}" style="color: white; text-decoration: solid;">Courses that were taught by Prof. X from Department Y during Fall 2011 to Fall
+          2021</a>
+        <!-- Courses that were taught by Prof. X from Department Y during Fall 2011 to Fall 2021 -->
+      </button>
+      <button class="query btn btn-danger">
+        <a href="{{ url_for('query2') }}" style="color: white; text-decoration: solid;">Courses that were taught by Prof. X from Department Y</a>
+
+      </button>
+      <button class="query btn btn-danger">
+        <a href="{{ url_for('query3') }}" style="color: white; text-decoration: solid;">All the courses that have been offered by the CSE department between Fall
+          2011 till Fall 2020.</a>
+      </button>
+
+      <button class="query btn btn-danger">
+        <a href="{{ url_for('query4') }}" style="color: white; text-decoration: solid;">All the faculties who have taught Course Z of Department Y</a>
+      </button>
+
+      <button class="query btn btn-danger">
+        <a href="{{ url_for('query5') }}" style="color: white; text-decoration: solid;"> Summary view of all the courses offered in Autumn 2020</a>
+      </button>
+
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
