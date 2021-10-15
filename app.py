@@ -376,8 +376,8 @@ def executeQuery5():
             while(row != None):
                 cursorID.append(row[0])
                 row = cursor.fetchone()
-        for id in cursorID:    #extra
-            print(id)
+        # for id in cursorID:    #extra
+        #     print(id)
         ValidCourseID=[]
         for id in cursorID:
             query_string="SELECT courseID from istaughtby WHERE courseID='{}' AND (startingYear<2020) AND (endYear IS NULL OR endYear > 2020)".format(id)
@@ -391,8 +391,8 @@ def executeQuery5():
                 while(row != None):
                     ValidCourseID.append(row[0])
                     row = cursor.fetchone()
-        for id in ValidCourseID:      #extra
-            print(id)
+        # for id in ValidCourseID:      #extra
+        #     print(id)
         CourseName=[]
         for id in ValidCourseID:
             query_string="SELECT courseName FROM courses WHERE courseID='{}'".format(id)
@@ -406,9 +406,44 @@ def executeQuery5():
                 while(row != None):
                     CourseName.append(row[0])
                     row = cursor.fetchone()
-        for name in CourseName:
-            print(name)
-        return render_template("filteredtable.html", resultlist=CourseName, result="Courses")
+        departmentID=[]
+        for id in ValidCourseID:
+            query_string="SELECT deapartmentID FROM courses WHERE courseID='{}'".format(id)
+            cursor.execute(query_string)
+            row=cursor.fetchone()
+            if(row==None):
+                print("No such course exists.")
+            else:
+                departmentID.append(row[0])
+                row = cursor.fetchone()
+                while(row != None):
+                    departmentID.append(row[0])
+                    row = cursor.fetchone()
+        semester=[]
+        for id in ValidCourseID:
+            query_string="SELECT semester FROM courses WHERE courseID='{}'".format(id)
+            cursor.execute(query_string)
+            row=cursor.fetchone()
+            if(row==None):
+                print("No such course exists.")
+            else:
+                semester.append(row[0])
+                row = cursor.fetchone()
+                while(row != None):
+                    semester.append(row[0])
+                    row = cursor.fetchone()
+        # for name in CourseName:  #extra
+        #     print(name)
+        result=[]
+        length=len(ValidCourseID)
+        result.append(ValidCourseID)
+        result.append(CourseName)
+        result.append(departmentID)
+        result.append(semester)
+        print(result)
+        print(type(result))
+        return render_template("filteredtable_5.html", result=result, length=length)
+        return render_template("filteredtable_5.html", courseidlist=ValidCourseID, coursenamelist=CourseName, semesterlist=semester, departmentlist=departmentID)
 
     return("NOT SUBMITTED PROPERLY")
 

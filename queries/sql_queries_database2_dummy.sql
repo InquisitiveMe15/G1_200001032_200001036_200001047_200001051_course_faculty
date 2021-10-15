@@ -128,6 +128,7 @@ INSERT INTO associated (departmentID, facultyId) values (3, 3);
 INSERT INTO associated (departmentID, facultyId) values (1, 6);
 INSERT INTO associated (departmentID, facultyId) values (6, 7);
 INSERT INTO associated (departmentID, facultyId) values (1, 8);
+
 SELECT * FROM associated;
 
 INSERT INTO istaughtby (courseID, facultyId, startingYear, day, timing, roomNO) VALUES (104,5,2009,"M,T,W","10:00","1");
@@ -136,5 +137,8 @@ INSERT INTO istaughtby (courseID, facultyId, startingYear, day, timing, roomNO) 
 INSERT INTO istaughtby (courseID, facultyId, startingYear, day, timing, roomNO) VALUES (156,3,2009,"M,T,W","10:00","4");
 INSERT INTO istaughtby (courseID, facultyId, startingYear, day, timing, roomNO) VALUES (201,2,2009,"M,T,W","11:00","5");
 INSERT INTO istaughtby (courseID, facultyId, startingYear, day, timing, roomNO) VALUES (207,1,2009,"M,T,W","12:00","5");
+INSERT INTO istaughtby (courseID, facultyId, startingYear, day, timing, roomNO) VALUES (201,1,2009,"M,T,W","12:00","5");
 INSERT INTO istaughtby (courseID, facultyId, startingYear, day, timing, roomNO) VALUES (203,8,2009,"M,T,W","10:00","5");
+UPDATE istaughtby SET endYear = 2011 WHERE courseID = 201;
+
 SELECT * FROM istaughtby;
