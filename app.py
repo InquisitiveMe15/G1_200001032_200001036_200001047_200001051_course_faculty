@@ -251,8 +251,15 @@ def executeQuery2():
 @app.route('/executeQuery3', methods=['GET', 'POST'])
 def executeQuery3():
     if request.method == 'POST':
+        departmentName = request.form['department']
+        # print(departmentName)                           ##extra
+
+        query_string = "SELECT departmentID FROM department WHERE departmentName='{}'".format(
+            departmentName)
+        cursor.execute(query_string)
+        departmentID = cursor.fetchall()
         CSEcoursesID=[]
-        query_string="SELECT courseID FROM courses WHERE deapartmentID=1"
+        query_string="SELECT courseID FROM courses WHERE deapartmentID='{}'".format(departmentID[0][0])
         cursor.execute(query_string)
         row=cursor.fetchone()
         if(row==None):
