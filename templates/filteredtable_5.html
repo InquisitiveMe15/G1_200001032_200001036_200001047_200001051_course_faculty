@@ -17,17 +17,20 @@
             <th>DepartmentID</th>
             <th>Semester</th>
         </tr>
-        
-        {% for i in range(length) %}
-            <tr>
-                {% for j in range(4) %}
-                    <td>{{ result[j][i] }}</td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
 
-        <!-- ***************************************************************************** -->
-        <!-- {% for j in courseidlist %}
+        {% for i in range(length) %}
+        <tr>
+            {% for j in range(4) %}
+            <td>{{ result[j][i] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+    <!-- ***************************************************************************** -->
+    <!-- {% for j in courseidlist %}
         <tr>
             <td>{{ j }}</td>
         </tr>
@@ -54,10 +57,13 @@
         </tr>
 
         {% endfor %} -->
-        <!-- ***************************************************************** -->
+    <!-- ***************************************************************** -->
 
 
-    </table>
+
+    <div class="back">
+        <a href="{{ url_for('index')}}">Back to Home page</a>
+    </div>
 
 </body>
 

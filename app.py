@@ -37,6 +37,7 @@ facultylist = cursor.fetchall()
 def index():
     return render_template("home.html", courselist=courselist, departmentlist=departmentlist, facultylist=facultylist)
 
+
 @app.route('/query1')
 def query1():
     return render_template("query1.html", facultylist=facultylist, departmentlist=departmentlist)
@@ -230,8 +231,6 @@ def executeQuery2():
     return("NOT SUBMITTED PROPERLY")
     
 #*****************************************************************************************************
-
-
 
 @app.route('/executeQuery3', methods=['GET', 'POST'])
 def executeQuery3():
@@ -432,12 +431,110 @@ def executeQuery5():
         result.append(CourseName)
         result.append(departmentID)
         result.append(semester)
-        print(result)
-        print(type(result))
+        # print(result)
+        # print(type(result))
         return render_template("filteredtable_5.html", result=result, length=length)
-        return render_template("filteredtable_5.html", courseidlist=ValidCourseID, coursenamelist=CourseName, semesterlist=semester, departmentlist=departmentID)
+        # return render_template("filteredtable_5.html", courseidlist=ValidCourseID, coursenamelist=CourseName, semesterlist=semester, departmentlist=departmentID)
 
     return("NOT SUBMITTED PROPERLY")
+
+#*************************************************
+@app.route('/executeCourses')
+def executeCourses():
+    # cursor.close()
+    cursor = conn.cursor()
+    courseID=[]
+    courseName=[]
+    departmentID=[]
+    semester=[]
+    query_string=("SELECT courseID FROM courses")
+    cursor.execute(query_string)
+    row = cursor.fetchone()
+    while(row != None):
+        courseID.append(row[0])
+        row = cursor.fetchone()
+    print(courseID)
+    
+    for id in courseID:
+        query_string=("SELECT courseName FROM courses WHERE courseID='{}'".format(id))
+        cursor.execute(query_string)
+        row = cursor.fetchone()
+        while(row != None):
+            courseName.append(row[0])
+            row = cursor.fetchone()
+    print(courseName)
+    
+    query_string=("SELECT deapartmentID FROM courses")
+    cursor.execute(query_string)
+    row = cursor.fetchone()
+    while(row != None):
+        departmentID.append(row[0])
+        row = cursor.fetchone()
+    print(departmentID)
+
+    for id in courseID:
+        query_string=("SELECT semester FROM courses WHERE courseID='{}'".format(id))
+        cursor.execute(query_string)
+        row = cursor.fetchone()
+        while(row != None):
+            semester.append(row[0])
+            row = cursor.fetchone()
+    print(semester)
+
+    result=[]
+    length=len(courseID)
+    result.append(courseID)
+    result.append(courseName)
+    result.append(departmentID)
+    result.append(semester)
+    return render_template("courses.html", result=result, length=length)
+
+@app.route('/executeFaculty')
+def executeFaculty():
+    facultyId=[]
+    name=[]
+    emailID=[]
+    address=[]
+    query_string=("SELECT facultyId FROM faculty")
+    cursor.execute(query_string)
+    row = cursor.fetchone()
+    while(row != None):
+        facultyId.append(row[0])
+        row = cursor.fetchone()
+    print(facultyId)
+
+    query_string=("SELECT name FROM faculty")
+    cursor.execute(query_string)
+    row = cursor.fetchone()
+    while(row != None):
+        name.append(row[0])
+        row = cursor.fetchone()
+    print(name)
+
+    query_string=("SELECT emailID FROM faculty")
+    cursor.execute(query_string)
+    row = cursor.fetchone()
+    while(row != None):
+        emailID.append(row[0])
+        row = cursor.fetchone()
+    print(emailID)
+    
+    query_string=("SELECT address FROM faculty")
+    cursor.execute(query_string)
+    row = cursor.fetchone()
+    while(row != None):
+        address.append(row[0])
+        row = cursor.fetchone()
+    print(address)
+
+    result=[]
+    length=len(facultyId)
+    result.append(facultyId)
+    result.append(name)
+    result.append(emailID)
+    result.append(address)
+    return render_template("faculty.html", result=result, length=length)
+
 
 
 if __name__ == '__main__':
