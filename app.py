@@ -37,21 +37,6 @@ facultylist = cursor.fetchall()
 def index():
     return render_template("home.html", courselist=courselist, departmentlist=departmentlist, facultylist=facultylist)
 
-
-# @app.route('/filter', methods=['GET','POST'])
-# def filter():
-#     if request.method == 'POST':
-#         course=(request.form['course'])
-#         department=request.form['department']
-#         faculty=request.form['faculty']
-#         startingyear=request.form['startingyear']
-#         endingyear=request.form['endingyear']
-#         #query1
-#         #cursor.execute('SELECT departmentID )
-#         cursor.execute('')
-#         # print(course, department, startingyear,endingyear,faculty)
-#         return("SUBMITTED SUCCESSFULLY ")
-
 @app.route('/query1')
 def query1():
     return render_template("query1.html", facultylist=facultylist, departmentlist=departmentlist)
