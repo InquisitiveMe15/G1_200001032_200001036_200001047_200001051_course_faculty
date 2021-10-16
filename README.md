@@ -4,7 +4,7 @@ Group G1
 Group Members : Neha, Kanchi Pardhi, Khushi Verma, Shruti Modi
 
 Install the following modules:
-flask
+flask, 
 flaskext.mysql
 
 Then run the app.py file
