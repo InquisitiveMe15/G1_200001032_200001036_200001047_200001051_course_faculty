@@ -7,12 +7,12 @@ from flask_recaptcha import ReCaptcha
 
 app = Flask(__name__)
 # *********************************************************
+
 app.secret_key = 'superSecretKey'
-app.config['RECAPTCHA_USE_SSL'] = False
-app.config['RECAPTCHA_PUBLIC_KEY'] = '6Lf4XtQcAAAAADTEkDEA0_AqdysjUvJxPuRf6hPs'
-app.config['RECAPTCHA_PRIVATE_KEY'] = '6Lf4XtQcAAAAAGuCw_oWxUh4_eqvNdP1GG0ahVWv'
-recaptcha = ReCaptcha(app)
-app.config['RECAPTCHA_OPTIONS'] = {'theme': 'white'}
+# app.config['RECAPTCHA_USE_SSL'] = False
+# app.config['RECAPTCHA_PUBLIC_KEY'] = ''
+# app.config['RECAPTCHA_PRIVATE_KEY'] = ''
+# recaptcha = ReCaptcha(app)
 # ***********************************************************
 
 mysql = MySQL()
@@ -34,20 +34,6 @@ departmentlist = cursor.fetchall()
 
 cursor.execute('SELECT name FROM faculty')
 facultylist = cursor.fetchall()
-
-
-# @app.route('/', methods=['GET', 'POST'])
-# def register():
-#     message = '' # Create empty message
-#     if request.method == 'POST': # Check to see if flask.request.method is POST
-#             if recaptcha.verify(): # Use verify() method to see if ReCaptcha is filled out
-#                 message = 'Thanks for filling out the form!' # Send success message
-#                 if recaptcha.validate_on_submit():
-#                     return render_template("home.html", courselist=courselist, departmentlist=departmentlist, facultylist=facultylist)
-#             else:
-#                 message = 'Please fill out the ReCaptcha!' # Send error message
-#                 return render_template('form.html', message=message)
-#     return render_template('form.html')
 
 
 @app.route('/')
