@@ -8,19 +8,25 @@
 </head>
 
 <body>
-    <h1>Results</h1>
+    <h1>Complete information about courses and faculty</h1>
 
     <table border=1>
         <tr>
             <th>CourseID</th>
             <th>Course Name</th>
-            <th>DepartmentID</th>
+            <th>Department ID</th>
+            <th>Department Name</th>
+            <th>Faculty ID</th>
+            <th>Faculty Name</th>
             <th>Semester</th>
+            <th>Day</th>
+            <th>Timings</th>
+            <th>Room NO</th>
         </tr>
 
         {% for i in range(length) %}
         <tr>
-            {% for j in range(4) %}
+            {% for j in range(10) %}
             <td>{{ result[j][i] }}</td>
             {% endfor %}
         </tr>

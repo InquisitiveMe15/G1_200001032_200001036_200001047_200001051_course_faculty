@@ -1,9 +1,16 @@
 # import the flask class
 from flask import Flask, session, render_template, request, make_response, redirect, flash
 from flaskext.mysql import MySQL
+from form import RegisterForm 
 
 # instatiating flask class
 app = Flask(__name__)
+
+app.config['RECAPTCHA_USE_SSL']= False
+app.config['RECAPTCHA_PUBLIC_KEY']='6Lf4XtQcAAAAADTEkDEA0_AqdysjUvJxPuRf6hPs'
+app.config['RECAPTCHA_PRIVATE_KEY']='6Lf4XtQcAAAAAGuCw_oWxUh4_eqvNdP1GG0ahVWv'
+app.config['RECAPTCHA_OPTIONS']= {'theme':'white'}
+
 mysql = MySQL()
 
 # configuring MySQL for the web application
@@ -32,6 +39,17 @@ departmentlist = cursor.fetchall()
 cursor.execute('SELECT name FROM faculty')
 facultylist = cursor.fetchall()
 
+# @app.route('/', methods=['GET', 'POST'])
+# def verify():
+#     return render_template("form.html")
+
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     form = RegisterForm()
+    
+#     if form.validate_on_submit():
+#         return render_template("home.html", courselist=courselist, departmentlist=departmentlist, facultylist=facultylist)
+#     return render_template("form.html", form=form)
 
 @app.route('/')
 def index():
@@ -441,7 +459,6 @@ def executeQuery5():
 #*************************************************
 @app.route('/executeCourses')
 def executeCourses():
-    # cursor.close()
     cursor = conn.cursor()
     courseID=[]
     courseName=[]
@@ -535,7 +552,124 @@ def executeFaculty():
     result.append(address)
     return render_template("faculty.html", result=result, length=length)
 
+@app.route('/completeinfo')
+def completeinfo():
+    courseID=[]
+    courseName=[]
+    facultyID=[]
+    facultyname=[]
+    departmentID=[]
+    departmentName=[]
+    semester=[]
+    roomNO=[]
+    day=[]
+    timing=[]
 
+    query_string="SELECT courseID FROM courses"
+    cursor.execute(query_string)
+    row = cursor.fetchone()
+    while(row != None):
+        courseID.append(row[0])
+        row = cursor.fetchone()
+    print(courseID)
 
+    for id in courseID:
+        query_string=("SELECT courseName FROM courses WHERE courseID='{}'".format(id))
+        cursor.execute(query_string)
+        row = cursor.fetchone()
+        while(row != None):
+            courseName.append(row[0])
+            row = cursor.fetchone()
+    print(courseName)
+
+    query_string=("SELECT deapartmentID FROM courses")
+    cursor.execute(query_string)
+    row = cursor.fetchone()
+    while(row != None):
+        departmentID.append(row[0])
+        row = cursor.fetchone()
+    print(departmentID)
+
+    for id in courseID:
+        query_string=("SELECT semester FROM courses WHERE courseID='{}'".format(id))
+        cursor.execute(query_string)
+        row = cursor.fetchone()
+        while(row != None):
+            semester.append(row[0])
+            row = cursor.fetchone()
+    print(semester)
+
+    for id in courseID:
+        query_string=("SELECT facultyID FROM istaughtby WHERE courseID='{}'".format(id))
+        cursor.execute(query_string)
+        row=cursor.fetchone()
+        if(row==None):
+            facultyID.append("NULL")
+        else:
+            facultyID.append(row[0])
+    print(facultyID)
+
+    for id in courseID:
+        query_string=("SELECT day FROM istaughtby WHERE courseID='{}'".format(id))
+        cursor.execute(query_string)
+        row=cursor.fetchone()
+        if(row==None):
+            day.append("NULL")
+        else:
+            day.append(row[0])
+    print(day)
+
+    for id in courseID:
+        query_string=("SELECT timing FROM istaughtby WHERE courseID='{}'".format(id))
+        cursor.execute(query_string)
+        row=cursor.fetchone()
+        if(row==None):
+            timing.append("NULL")
+        else:
+            timing.append(row[0])
+    print(timing)
+
+    for id in courseID:
+        query_string=("SELECT roomNO FROM istaughtby WHERE courseID='{}'".format(id))
+        cursor.execute(query_string)
+        row=cursor.fetchone()
+        if(row==None):
+            roomNO.append("NULL")
+        else:
+            roomNO.append(row[0])
+
+    print(roomNO)
+
+    for id in departmentID:
+        query_string=("SELECT departmentName FROM department WHERE departmentID='{}'".format(id))
+        cursor.execute(query_string)
+        row=cursor.fetchone()
+        departmentName.append(row[0])
+    print(departmentName)
+
+    for id in facultyID:
+        if id=="NULL":
+            facultyname.append("NULL")
+        else:
+            query_string=("SELECT name FROM faculty WHERE facultyId='{}'".format(id))
+            cursor.execute(query_string)
+            row=cursor.fetchone()
+            facultyname.append(row[0])
+    print(facultyname)
+
+    result=[]
+    length=len(courseID)
+    result.append(courseID)
+    result.append(courseName)
+    result.append(departmentID)
+    result.append(departmentName)
+    result.append(facultyID)
+    result.append(facultyname)
+    result.append(semester)
+    result.append(day)
+    result.append(timing)
+    result.append(roomNO)
+    return render_template("completeSummary.html", result=result, length=length)
+    
 if __name__ == '__main__':
     app.run(debug=True)

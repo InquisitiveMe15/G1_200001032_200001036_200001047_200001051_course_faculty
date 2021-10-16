@@ -16,6 +16,7 @@
             <th>Course Name</th>
             <th>DepartmentID</th>
             <th>Semester</th>
+            <th>EDIT</th>
         </tr>
 
         {% for i in range(length) %}
@@ -23,6 +24,7 @@
             {% for j in range(4) %}
             <td>{{ result[j][i] }}</td>
             {% endfor %}
+            <td><a href="#">EDIT</a></td>
         </tr>
         {% endfor %}
     </table>
