@@ -2,18 +2,14 @@
 from flask import Flask, session, render_template, request, make_response, redirect, flash
 from flaskext.mysql import MySQL
 # ********************************************************
-from flask_recaptcha import ReCaptcha
+# from flask_recaptcha import ReCaptcha
 
 
 app = Flask(__name__)
 # *********************************************************
 
 app.secret_key = 'superSecretKey'
-# app.config['RECAPTCHA_USE_SSL'] = False
-# app.config['RECAPTCHA_PUBLIC_KEY'] = ''
-# app.config['RECAPTCHA_PRIVATE_KEY'] = ''
-# recaptcha = ReCaptcha(app)
-# ***********************************************************
+
 
 mysql = MySQL()
 
