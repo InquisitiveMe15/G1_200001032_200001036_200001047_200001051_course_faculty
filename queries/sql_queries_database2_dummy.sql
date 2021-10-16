@@ -53,8 +53,8 @@ CREATE TABLE `istaughtby` (
   `roomNo` varchar(45) NOT NULL,
   PRIMARY KEY (`courseID`,`facultyId`),
   KEY `faculty` (`facultyId`),
-  CONSTRAINT `courses` FOREIGN KEY (`courseID`) REFERENCES `courses` (`courseID`) ON DELETE CASCADE,
-  CONSTRAINT `faculty` FOREIGN KEY (`facultyId`) REFERENCES `faculty` (`facultyId`)
+  CONSTRAINT `courses` FOREIGN KEY (`courseID`) REFERENCES `courses` (`courseID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `faculty` FOREIGN KEY (`facultyId`) REFERENCES `faculty` (`facultyId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 LOCK TABLES `istaughtby` WRITE;
 UNLOCK TABLES;
