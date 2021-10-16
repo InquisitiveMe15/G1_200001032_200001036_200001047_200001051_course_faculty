@@ -16,7 +16,7 @@
             <th>Course Name</th>
             <th>DepartmentID</th>
             <th>Semester</th>
-            <th>EDIT</th>
+            
         </tr>
 
         {% for i in range(length) %}
@@ -24,12 +24,14 @@
             {% for j in range(4) %}
             <td>{{ result[j][i] }}</td>
             {% endfor %}
-            <td><a href="#">EDIT</a></td>
+            
         </tr>
         {% endfor %}
     </table>
 
-
+    <div class="edit">
+        <a href="{{url_for('editcoursePage')}}">EDIT</a>
+    </div>
     <div class="back">
         <a href="{{ url_for('index')}}">Back to Home page</a>
     </div>

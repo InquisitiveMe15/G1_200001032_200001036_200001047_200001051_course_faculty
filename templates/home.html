@@ -23,7 +23,7 @@
       color: black;
       font-weight: 700;
     }
-    
+
     .card-body {
       background-color: rgb(206, 206, 206);
     }
@@ -57,10 +57,13 @@
             <a class="nav-link" href="#query">Queries</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Add Course</a>
+            <a class="nav-link" href="{{url_for('addcoursePage')}}">Add Course</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Add faculty</a>
+            <a class="nav-link" href="{{ url_for('addfacultyPage') }}">Add faculty</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('adddepartmentPage') }}">Add Department</a>
           </li>
 
         </ul>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <title>Edit</title>
+    <style>
+        body {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjaqkzXOl3Walquq3jRXTuWAfqm2OLjB-t3ThL9N8GUvgeQlqlMNN4ekqJ-u3pJk6U2bM&usqp=CAU');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">IIT Indore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#filter">Filter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="heading" style="color: chartreuse; margin-top: 30px; text-align: center;">
+        <h2>EDIT FACULTY</h2>
+    </div>
+
+    <div class="filters" id="filter"
+        style="padding: 1%; font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 300; font-size: 20px; color: chartreuse; text-align: center;">
+
+        <div class="warning">{{warning}}</div>
+        <br>
+        <form action="{{ url_for('editfaculty') }}" method="post">
+            <br><br>
+            <input id="facultyId" name="facultyId" type="text" placeholder="Enter facultyId" class="text" /><br><br>
+            <input id="name" name="name" type="text" placeholder="Enter name" class="text" /><br><br>
+            <input id="emailID" name="emailID" type="text" placeholder="Enter emailID" class="text" /><br><br>
+            <input id="address" name="address" type="text" placeholder="Enter address" class="text" /><br><br>
+            <input type="submit" class="btn" value="Submit" /><br><br>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
